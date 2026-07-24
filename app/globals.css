@@ -1,26 +1,161 @@
 @import "tailwindcss";
 
 :root {
+  /* SCY Official Color Palette */
+  --scy-primary: #263370;
+  --scy-primary-600: #1c2757;
+  --scy-primary-100: #e7e9f2;
+
+  --scy-secondary: #0c7fae;
+  --scy-secondary-600: #0a6a91;
+  --scy-secondary-100: #e1f0f6;
+
+  --scy-accent: #42b07a;
+  --scy-accent-600: #359465;
+  --scy-accent-100: #e4f5ec;
+
+  --scy-ink: #12172e;
+  --scy-ink-muted: #5b6178;
+  --scy-bg: #ffffff;
+  --scy-bg-alt: #f6f7fb;
+  --scy-border: #e4e6f0;
+
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #12172e;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  --color-scy-primary: var(--scy-primary);
+  --color-scy-primary-600: var(--scy-primary-600);
+  --color-scy-primary-100: var(--scy-primary-100);
+
+  --color-scy-secondary: var(--scy-secondary);
+  --color-scy-secondary-600: var(--scy-secondary-600);
+  --color-scy-secondary-100: var(--scy-secondary-100);
+
+  --color-scy-accent: var(--scy-accent);
+  --color-scy-accent-600: var(--scy-accent-600);
+  --color-scy-accent-100: var(--scy-accent-100);
+
+  --color-scy-ink: var(--scy-ink);
+  --color-scy-ink-muted: var(--scy-ink-muted);
+  --color-scy-bg-alt: var(--scy-bg-alt);
+  --color-scy-border: var(--scy-border);
+
+  --font-tajawal: var(--font-tajawal), 'Tajawal', sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Custom Utilities & Animations */
+@layer utilities {
+  .glass-header {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(228, 230, 240, 0.8);
+  }
+
+  .glass-navy {
+    background: rgba(38, 51, 112, 0.85);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .hero-gradient {
+    background: radial-gradient(circle at 70% 20%, #0c7fae 0%, transparent 40%),
+                radial-gradient(circle at 10% 80%, #42b07a 0%, transparent 35%),
+                linear-gradient(135deg, #1c2757 0%, #263370 50%, #12172e 100%);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 20px rgba(12, 127, 174, 0.4);
+  }
+
+  .card-shadow {
+    box-shadow: 0 10px 30px -5px rgba(38, 51, 112, 0.08), 0 4px 12px -2px rgba(38, 51, 112, 0.04);
+  }
+
+  .card-shadow-hover {
+    box-shadow: 0 20px 40px -10px rgba(38, 51, 112, 0.15), 0 8px 16px -4px rgba(12, 127, 174, 0.1);
+  }
+
+  .brand-pattern-bg {
+    background-image: radial-gradient(rgba(12, 127, 174, 0.12) 1px, transparent 1px);
+    background-size: 24px 24px;
   }
 }
 
+/* Keyframe Animations */
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes sweep {
+  0% { transform: translateX(-100%) skewX(12deg); }
+  100% { transform: translateX(200%) skewX(12deg); }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.animate-sweep {
+  animation: sweep 1.5s ease-in-out;
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f6f7fb;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0c7fae;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #263370;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--scy-bg);
+  color: var(--scy-ink);
+  font-family: var(--font-tajawal), 'Tajawal', sans-serif;
+  direction: rtl;
+  overflow-x: hidden;
 }
