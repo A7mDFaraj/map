@@ -2,17 +2,17 @@
 
 :root {
   /* SCY Official Color Palette */
-  --scy-primary: #263370;
-  --scy-primary-600: #1c2757;
-  --scy-primary-100: #e7e9f2;
+  --scy-primary: #233A77;
+  --scy-primary-600: #1a2c5a;
+  --scy-primary-100: #e7ebf2;
 
-  --scy-secondary: #0c7fae;
-  --scy-secondary-600: #0a6a91;
-  --scy-secondary-100: #e1f0f6;
+  --scy-secondary: #1C81AC;
+  --scy-secondary-600: #156283;
+  --scy-secondary-100: #e1eff5;
 
-  --scy-accent: #42b07a;
-  --scy-accent-600: #359465;
-  --scy-accent-100: #e4f5ec;
+  --scy-accent: #3EB985;
+  --scy-accent-600: #2e8b64;
+  --scy-accent-100: #e4f6ec;
 
   --scy-ink: #12172e;
   --scy-ink-muted: #5b6178;
@@ -60,31 +60,31 @@
   }
 
   .glass-navy {
-    background: rgba(38, 51, 112, 0.85);
+    background: rgba(35, 58, 119, 0.85);
     backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.12);
   }
 
   .hero-gradient {
-    background: radial-gradient(circle at 70% 20%, #0c7fae 0%, transparent 40%),
-                radial-gradient(circle at 10% 80%, #42b07a 0%, transparent 35%),
-                linear-gradient(135deg, #1c2757 0%, #263370 50%, #12172e 100%);
+    background: radial-gradient(circle at 70% 20%, #1C81AC 0%, transparent 40%),
+                radial-gradient(circle at 10% 80%, #3EB985 0%, transparent 35%),
+                linear-gradient(135deg, #1a2c5a 0%, #233A77 50%, #12172e 100%);
   }
 
   .text-glow {
-    text-shadow: 0 0 20px rgba(12, 127, 174, 0.4);
+    text-shadow: 0 0 20px rgba(28, 129, 172, 0.4);
   }
 
   .card-shadow {
-    box-shadow: 0 10px 30px -5px rgba(38, 51, 112, 0.08), 0 4px 12px -2px rgba(38, 51, 112, 0.04);
+    box-shadow: 0 10px 30px -5px rgba(35, 58, 119, 0.08), 0 4px 12px -2px rgba(35, 58, 119, 0.04);
   }
 
   .card-shadow-hover {
-    box-shadow: 0 20px 40px -10px rgba(38, 51, 112, 0.15), 0 8px 16px -4px rgba(12, 127, 174, 0.1);
+    box-shadow: 0 20px 40px -10px rgba(35, 58, 119, 0.15), 0 8px 16px -4px rgba(28, 129, 172, 0.1);
   }
 
   .brand-pattern-bg {
-    background-image: radial-gradient(rgba(12, 127, 174, 0.12) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(28, 129, 172, 0.12) 1px, transparent 1px);
     background-size: 24px 24px;
   }
 }
@@ -144,12 +144,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #0c7fae;
+  background: #1C81AC;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #263370;
+  background: #233A77;
 }
 
 body {

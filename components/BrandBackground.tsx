@@ -12,7 +12,7 @@
  *   <BrandBackground variant="light">…</BrandBackground>
  */
 
-import { type ReactNode, type ElementType, type ComponentPropsWithoutRef } from 'react';
+import { type ReactNode, type ElementType, type ComponentPropsWithoutRef, type CSSProperties } from 'react';
 
 type Variant = 'dark' | 'light';
 
@@ -22,11 +22,13 @@ type BrandBackgroundProps<T extends ElementType = 'div'> = {
   /** Extra opacity for the pattern (0–1). Default: 0.07 for dark, 0.05 for light */
   patternOpacity?: number;
   children?: ReactNode;
-} & Omit<ComponentPropsWithoutRef<T>, 'as' | 'children'>;
+  className?: string;
+  style?: CSSProperties;
+} & Omit<ComponentPropsWithoutRef<T>, 'as' | 'children' | 'className' | 'style'>;
 
 const variantStyles: Record<Variant, { bg: string; patternFilter: string; defaultOpacity: number }> = {
   dark: {
-    bg: 'var(--scy-primary, #263370)',
+    bg: 'var(--scy-primary, #233A77)',
     // lighten the pattern on dark bg → white-ish tint
     patternFilter: 'brightness(0) invert(1)',
     defaultOpacity: 0.07,
