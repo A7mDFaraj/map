@@ -173,6 +173,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister }) => {
                             zIndex: 50
                           }}
                           className="cursor-pointer origin-center drop-shadow-md hover:drop-shadow-[0_10px_15px_rgba(28,129,172,0.5)] transition-all duration-300"
+                          suppressHydrationWarning
                         />
                       );
                     })}

@@ -147,6 +147,7 @@ export default function SaudiMap() {
                 onMouseEnter={() => setHoveredRegionId(region.id)}
                 onMouseLeave={() => setHoveredRegionId(null)}
                 className="cursor-pointer outline-none transform-origin-center"
+                suppressHydrationWarning
               />
             );
           })}

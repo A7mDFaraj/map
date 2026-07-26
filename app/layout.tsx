@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl" className={`${tajawal.variable} scroll-smooth`}>
-      <body className="min-h-screen flex flex-col antialiased bg-white text-[#12172e] selection:bg-[#0c7fae] selection:text-white">
+      <body suppressHydrationWarning className="min-h-screen flex flex-col antialiased bg-white text-[#12172e] selection:bg-[#0c7fae] selection:text-white">
         {children}
       </body>
     </html>

@@ -170,6 +170,7 @@ export const InteractiveSaudiMap: React.FC = () => {
                         onMouseLeave={() => setHoveredRegion(null)}
                         onClick={() => setSelectedRegion(region)}
                         className="transition-colors duration-300 origin-center hover:drop-shadow-[0_10px_15px_rgba(28,129,172,0.4)]"
+                        suppressHydrationWarning
                       />
 
                       {/* Region Capital Marker Pin */}
