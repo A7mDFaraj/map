@@ -1,0 +1,119 @@
+'use client';
+
+import React from 'react';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { SAUDI_REGIONS } from '@/data/mapRegionsData';
+import BrandBackground from '@/components/BrandBackground';
+
+export const HeroSection = () => {
+  return (
+    <section className="relative w-full min-h-screen overflow-hidden flex items-center bg-[#12172e]">
+      
+      {/* Smooth Modern Aurora Background - Softened */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <motion.div 
+          className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#233A77] rounded-full filter blur-[120px] opacity-30"
+          animate={{ x: [0, 100, 0], y: [0, 50, 0] }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div 
+          className="absolute top-[10%] right-[-10%] w-[40%] h-[60%] bg-[#1C81AC] rounded-full filter blur-[150px] opacity-15"
+          animate={{ x: [0, -100, 0], y: [0, 100, 0] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div 
+          className="absolute bottom-[-20%] left-[20%] w-[60%] h-[50%] bg-[#3EB985] rounded-full filter blur-[130px] opacity-10"
+          animate={{ x: [0, 80, 0], y: [0, -100, 0] }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </div>
+
+      {/* Corner Accents using BrandBackground */}
+      <BrandBackground 
+        variant="dark"
+        className="top-0 right-0 w-96 h-96 [mask-image:radial-gradient(circle_at_top_right,black,transparent)] pointer-events-none z-10"
+        style={{ position: 'absolute', backgroundColor: 'transparent' }}
+      />
+      <BrandBackground 
+        variant="dark"
+        className="bottom-0 left-0 w-96 h-96 [mask-image:radial-gradient(circle_at_bottom_left,black,transparent)] pointer-events-none z-10"
+        style={{ position: 'absolute', backgroundColor: 'transparent' }}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 py-20 lg:py-0 relative">
+        
+        {/* Two-column layout: Stacked on mobile, 50/50 on desktop. row-reverse puts map on left in RTL */}
+        <div className="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-8" style={{ fontFamily: 'Thamaynyah, sans-serif' }}>
+          
+          {/* Left Column: Visual (Map) - Appears first on mobile */}
+          <div className="w-full lg:w-1/2 flex justify-center items-center relative">
+
+            {/* SVG Animated Map */}
+            <div className="w-full aspect-square max-w-[550px] relative">
+              <svg 
+                viewBox="0 0 730 600" 
+                className="w-full h-full drop-shadow-[0_0_15px_rgba(28,129,172,0.5)]"
+                style={{ filter: "drop-shadow(0px 0px 8px rgba(28,129,172,0.8))" }}
+              >
+                {SAUDI_REGIONS.map((region) => (
+                  <motion.path
+                    key={region.id}
+                    d={region.svgPath}
+                    fill="transparent"
+                    stroke="#1C81AC"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    initial={{ pathLength: 0, opacity: 0.2 }}
+                    animate={{ 
+                      pathLength: [0, 1, 1, 0],
+                      opacity: [0.2, 1, 1, 0.2]
+                    }}
+                    transition={{
+                      duration: 8,
+                      ease: "easeInOut",
+                      repeat: Infinity,
+                      repeatType: "loop",
+                      delay: Math.random() * 2 // Stagger the drawing slightly for organic feel
+                    }}
+                  />
+                ))}
+              </svg>
+            </div>
+          </div>
+
+          {/* Right Column: Content */}
+          <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-start z-20">
+            <motion.h1 
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 pb-4 leading-tight tracking-tight whitespace-pre-line text-transparent bg-clip-text"
+              style={{
+                backgroundImage: 'linear-gradient(to right, #1C81AC, #3EB985, #233A77, #1C81AC)',
+                backgroundSize: '300% 100%',
+              }}
+              animate={{ backgroundPosition: ['0% 50%', '100% 50%'] }}
+              transition={{ duration: 10, ease: "linear", repeat: Infinity }}
+            >
+              {`اكتشف الجمعيات\nالشبابية في المملكة`}
+            </motion.h1>
+            
+            {/* Subtitle with Emblem */}
+            <div className="flex items-center justify-center lg:justify-start gap-4">
+              <div className="w-12 h-12 relative shrink-0">
+                <Image 
+                  src="/Emblem_of_Saudi_Arabia_(2).svg.png" 
+                  alt="Saudi Emblem" 
+                  fill 
+                  className="object-contain filter brightness-0 invert opacity-50" 
+                />
+              </div>
+              <p className="text-lg sm:text-xl font-medium text-white/50 tracking-wide">
+                رؤية شبابية، بيانات دقيقة، تمكين مستدام
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};

@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Thamaynyah';
+  src: url('/fonts/thmanyahsans-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Thamaynyah';
+  src: url('/fonts/thmanyahsans-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
 :root {
   /* SCY Official Color Palette */
   --scy-primary: #233A77;
