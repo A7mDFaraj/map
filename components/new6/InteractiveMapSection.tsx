@@ -35,7 +35,7 @@ export const InteractiveMapSection: React.FC = () => {
   };
 
   return (
-    <section id="interactive-map" style={{ fontFamily: 'Thamaynyah, sans-serif' }} className="py-24 bg-[#12172e] relative overflow-hidden">
+    <section id="interactive-map" style={{ fontFamily: 'Thamaynyah, sans-serif' }} className="py-24 bg-transparent relative">
       
       {/* Decorative Brand Art Accents */}
       <div className="absolute top-0 right-0 w-80 h-80 bg-[#1C81AC]/5 rounded-full blur-3xl pointer-events-none" />

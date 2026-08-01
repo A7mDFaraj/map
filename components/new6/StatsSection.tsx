@@ -59,7 +59,7 @@ export const StatsSection = () => {
   ];
 
   return (
-    <section className="w-full py-20 bg-[#0a0d1d] relative overflow-hidden" style={{ fontFamily: 'Thamaynyah, sans-serif' }}>
+    <section className="w-full py-20 bg-transparent relative" style={{ fontFamily: 'Thamaynyah, sans-serif' }}>
       {/* Premium Background ambient light */}
       <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#1C81AC]/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-[#3EB985]/5 rounded-full blur-[120px] pointer-events-none" />

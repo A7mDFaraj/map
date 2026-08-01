@@ -8,10 +8,10 @@ import BrandBackground from '@/components/BrandBackground';
 
 export const HeroSection = () => {
   return (
-    <section className="relative w-full min-h-screen overflow-hidden flex items-center bg-[#12172e]">
+    <section className="relative w-full min-h-screen flex items-center bg-transparent">
       
       {/* Smooth Modern Aurora Background - Softened */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <motion.div 
           className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#233A77] rounded-full filter blur-[120px] opacity-30"
           animate={{ x: [0, 100, 0], y: [0, 50, 0] }}
@@ -47,7 +47,7 @@ export const HeroSection = () => {
         <div className="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-8" style={{ fontFamily: 'Thamaynyah, sans-serif' }}>
           
           {/* Left Column: Visual (Map) - Appears first on mobile */}
-          <div className="w-full lg:w-1/2 flex justify-center 2xl:justify-end items-center relative min-h-[400px] lg:min-h-[600px]">
+          <div className="w-full lg:w-1/2 flex justify-center 2xl:justify-start items-center relative min-h-[400px] lg:min-h-[600px]">
             {/* Decorative Glow behind map */}
             <div className="absolute inset-0 bg-[#1C81AC] opacity-20 blur-[100px] rounded-full mix-blend-screen pointer-events-none" />
 
@@ -94,20 +94,21 @@ export const HeroSection = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <motion.h1 
-              className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 pb-2 leading-[1.2] tracking-tight whitespace-pre-line text-transparent bg-clip-text"
+              className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 pb-4 leading-[1.4] tracking-tight whitespace-pre-line text-transparent bg-clip-text overflow-visible"
               style={{
                 backgroundImage: 'linear-gradient(to right, #1C81AC, #3EB985, #233A77, #1C81AC)',
                 backgroundSize: '300% 100%',
               }}
               animate={{ backgroundPosition: ['0% 50%', '100% 50%'] }}
-              transition={{ duration: 10, ease: "linear", repeat: Infinity }}
-            >
-              {`اكتشف الجمعيات\nالشبابية في المملكة`}
+              transition={{ duration: 10, ease: "linear", repeat: Infinity }}>
+              اكتشف الجمعيات
+              <br />
+              الشبابية في المملكة
             </motion.h1>
             
             {/* Subtitle with Emblem */}
             <motion.div 
-              className="flex items-center justify-center lg:justify-start gap-4 mb-10"
+              className="flex items-center justify-center lg:justify-start gap-4 mt-4 mb-10"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}

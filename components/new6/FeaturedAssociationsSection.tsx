@@ -45,7 +45,7 @@ export const FeaturedAssociationsSection = () => {
   };
 
   return (
-    <section className="w-full py-24 bg-[#0a0d1d] relative overflow-hidden" style={{ fontFamily: 'Thamaynyah, sans-serif' }}>
+    <section className="w-full py-24 bg-transparent relative" style={{ fontFamily: 'Thamaynyah, sans-serif' }}>
       
       {/* Premium Background ambient light */}
       <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-[#1C81AC]/5 rounded-full blur-[120px] pointer-events-none" />

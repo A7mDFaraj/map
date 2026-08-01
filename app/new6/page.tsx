@@ -11,7 +11,7 @@ import { CTASection } from '@/components/new6/CTASection';
 
 export default function New6Page() {
   return (
-    <div className="min-h-screen bg-[#12172e] font-sans" dir="rtl">
+    <div className="min-h-screen bg-[#12172e] font-sans overflow-x-hidden" dir="rtl">
       <main>
         <HeroSection />
         <AboutSection />

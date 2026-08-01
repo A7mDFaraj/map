@@ -11,7 +11,7 @@ export const CTASection = () => {
   const maskBg = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><radialGradient id='g1'><stop offset='0%' stop-color='%231C81AC' stop-opacity='1'/><stop offset='100%' stop-color='%231C81AC' stop-opacity='0'/></radialGradient><radialGradient id='g2'><stop offset='0%' stop-color='%233EB985' stop-opacity='1'/><stop offset='100%' stop-color='%233EB985' stop-opacity='0'/></radialGradient><radialGradient id='g3'><stop offset='0%' stop-color='%2338bdf8' stop-opacity='1'/><stop offset='100%' stop-color='%2338bdf8' stop-opacity='0'/></radialGradient></defs><rect width='100' height='100' fill='%230a0d1d'/><circle r='70' fill='url(%23g1)'><animate attributeName='cx' values='-20;120;-20' dur='6s' repeatCount='indefinite'/><animate attributeName='cy' values='-20;120;-20' dur='8s' repeatCount='indefinite'/></circle><circle r='80' fill='url(%23g2)'><animate attributeName='cx' values='120;-20;120' dur='7s' repeatCount='indefinite'/><animate attributeName='cy' values='120;-20;120' dur='5s' repeatCount='indefinite'/></circle><circle r='60' fill='url(%23g3)'><animate attributeName='cx' values='50;-20;120;50' dur='9s' repeatCount='indefinite'/><animate attributeName='cy' values='50;120;-20;50' dur='11s' repeatCount='indefinite'/></circle></svg>";
 
   return (
-    <section className="w-full py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ fontFamily: 'Thamaynyah, sans-serif' }}>
+    <section className="w-full py-20 px-4 sm:px-6 lg:px-8 relative" style={{ fontFamily: 'Thamaynyah, sans-serif' }}>
       
       <div className="max-w-7xl mx-auto relative z-10">
         
