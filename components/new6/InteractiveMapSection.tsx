@@ -2,21 +2,18 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Users, Building2, TrendingUp, Sparkles, Filter, CheckCircle2, ChevronLeft, RotateCcw } from 'lucide-react';
+import { MapPin, Users, Building2, TrendingUp, Sparkles, CheckCircle2, ChevronLeft, RotateCcw } from 'lucide-react';
 import { SAUDI_REGIONS, RegionData, TOTAL_NATIONAL_METRICS } from '@/data/mapRegionsData';
-import { YOUTH_ASSOCIATIONS, CATEGORIES, YouthAssociation } from '@/data/associationsData';
+import { YOUTH_ASSOCIATIONS, YouthAssociation } from '@/data/associationsData';
 import { SectionTitle } from '@/components/SectionTitle';
 
 export const InteractiveMapSection: React.FC = () => {
   const [selectedRegion, setSelectedRegion] = useState<RegionData | null>(null);
   const [hoveredRegion, setHoveredRegion] = useState<RegionData | null>(null);
-  const [activeCategory, setActiveCategory] = useState<string>('الكل');
 
-  // Filtered associations based on region and category
+  // Filtered associations based on region
   const currentAssociations = YOUTH_ASSOCIATIONS.filter((assoc) => {
-    const matchesRegion = selectedRegion ? assoc.regionId === selectedRegion.id : true;
-    const matchesCategory = activeCategory === 'الكل' ? true : assoc.category === activeCategory;
-    return matchesRegion && matchesCategory;
+    return selectedRegion ? assoc.regionId === selectedRegion.id : true;
   });
 
   const activeRegionData = selectedRegion || {
@@ -53,26 +50,7 @@ export const InteractiveMapSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Category Filters Row */}
-        <div className="flex items-center justify-center gap-2 flex-wrap mb-10">
-          <div className="flex items-center gap-1 text-xs font-bold text-white/60 ml-2">
-            <Filter className="w-4 h-4 text-[#1C81AC]" />
-            <span>التصنيف:</span>
-          </div>
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
-                activeCategory === cat
-                  ? 'bg-[#233A77] text-white shadow-md shadow-[#263370]/20'
-                  : 'bg-[#0a0d1d] text-white/60 hover:bg-[#1C81AC]/10'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+
 
         {/* Two-Column Grid: SVG Map + Region Details Panel */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
@@ -341,7 +319,7 @@ export const InteractiveMapSection: React.FC = () => {
                   ))
                 ) : (
                   <div className="p-6 text-center text-white/60 text-sm bg-[#0a0d1d] rounded-xl border border-dashed border-[#1C81AC]/20">
-                    لا توجد جمعيات تطابق الفلتر المحدد في هذه المنطقة.
+                    لا توجد جمعيات في هذه المنطقة.
                   </div>
                 )}
               </div>
