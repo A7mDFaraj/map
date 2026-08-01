@@ -29,28 +29,30 @@ export const HeroSection = () => {
         />
       </div>
 
-      {/* Corner Accents using BrandBackground */}
+      {/* Corner Accents using BrandBackground - Softened to prevent sharp cuts */}
       <BrandBackground 
         variant="dark"
-        className="top-0 right-0 w-96 h-96 [mask-image:radial-gradient(circle_at_top_right,black,transparent)] pointer-events-none z-10"
+        className="top-0 right-0 w-[500px] h-[500px] lg:w-[700px] lg:h-[700px] [mask-image:radial-gradient(circle_at_top_right,#000_0%,transparent_50%)] pointer-events-none z-10"
         style={{ position: 'absolute', backgroundColor: 'transparent' }}
       />
       <BrandBackground 
         variant="dark"
-        className="bottom-0 left-0 w-96 h-96 [mask-image:radial-gradient(circle_at_bottom_left,black,transparent)] pointer-events-none z-10"
+        className="bottom-0 left-0 w-[500px] h-[500px] lg:w-[700px] lg:h-[700px] [mask-image:radial-gradient(circle_at_bottom_left,#000_0%,transparent_50%)] pointer-events-none z-10"
         style={{ position: 'absolute', backgroundColor: 'transparent' }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 py-20 lg:py-0 relative">
+      <div className="max-w-7xl 2xl:max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-16 w-full z-10 py-20 lg:py-0 relative">
         
         {/* Two-column layout: Stacked on mobile, 50/50 on desktop. row-reverse puts map on left in RTL */}
         <div className="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-8" style={{ fontFamily: 'Thamaynyah, sans-serif' }}>
           
           {/* Left Column: Visual (Map) - Appears first on mobile */}
-          <div className="w-full lg:w-1/2 flex justify-center items-center relative">
+          <div className="w-full lg:w-1/2 flex justify-center 2xl:justify-end items-center relative min-h-[400px] lg:min-h-[600px]">
+            {/* Decorative Glow behind map */}
+            <div className="absolute inset-0 bg-[#1C81AC] opacity-20 blur-[100px] rounded-full mix-blend-screen pointer-events-none" />
 
             {/* SVG Animated Map */}
-            <div className="w-full aspect-square max-w-[550px] relative">
+            <div className="w-full aspect-square max-w-[550px] 2xl:max-w-[750px] relative z-10 transition-all duration-500">
               <svg 
                 viewBox="0 0 730 600" 
                 className="w-full h-full drop-shadow-[0_0_15px_rgba(28,129,172,0.5)]"
@@ -80,13 +82,19 @@ export const HeroSection = () => {
                   />
                 ))}
               </svg>
+
             </div>
           </div>
 
           {/* Right Column: Content */}
-          <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-start z-20">
+          <motion.div 
+            className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-start z-20"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
             <motion.h1 
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 pb-4 leading-tight tracking-tight whitespace-pre-line text-transparent bg-clip-text"
+              className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 pb-2 leading-[1.2] tracking-tight whitespace-pre-line text-transparent bg-clip-text"
               style={{
                 backgroundImage: 'linear-gradient(to right, #1C81AC, #3EB985, #233A77, #1C81AC)',
                 backgroundSize: '300% 100%',
@@ -98,20 +106,26 @@ export const HeroSection = () => {
             </motion.h1>
             
             {/* Subtitle with Emblem */}
-            <div className="flex items-center justify-center lg:justify-start gap-4">
+            <motion.div 
+              className="flex items-center justify-center lg:justify-start gap-4 mb-10"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
               <div className="w-12 h-12 relative shrink-0">
                 <Image 
                   src="/Emblem_of_Saudi_Arabia_(2).svg.png" 
                   alt="Saudi Emblem" 
                   fill 
-                  className="object-contain filter brightness-0 invert opacity-50" 
+                  className="object-contain filter brightness-0 invert opacity-70 drop-shadow-md" 
                 />
               </div>
-              <p className="text-lg sm:text-xl font-medium text-white/50 tracking-wide">
+              <p className="text-lg sm:text-xl lg:text-2xl font-medium text-white/80 tracking-wide leading-relaxed">
                 رؤية شبابية، بيانات دقيقة، تمكين مستدام
               </p>
-            </div>
-          </div>
+            </motion.div>
+
+          </motion.div>
         </div>
       </div>
     </section>
