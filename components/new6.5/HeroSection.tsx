@@ -1,44 +1,26 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { SAUDI_REGIONS } from '@/data/mapRegionsData';
-import BrandBackground from '@/components/BrandBackground';
 
 export const HeroSection = () => {
   return (
-    <section className="relative w-full min-h-screen flex items-center bg-transparent">
+    <section className="relative w-full min-h-screen flex items-center bg-[#060B17] overflow-hidden">
       
-      {/* Smooth Modern Aurora Background */}
+      {/* Subtle Atmospheric Lighting */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <motion.div 
-          className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#233A77] rounded-full filter blur-[120px] opacity-30"
-          animate={{ x: [0, 100, 0], y: [0, 50, 0] }}
+          className="absolute top-[0%] left-[10%] w-[40%] h-[40%] bg-[#1C81AC] rounded-full filter blur-[180px] opacity-10"
+          animate={{ x: [0, 30, 0], y: [0, 40, 0] }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div 
-          className="absolute top-[10%] right-[-10%] w-[40%] h-[60%] bg-[#1C81AC] rounded-full filter blur-[150px] opacity-15"
-          animate={{ x: [0, -100, 0], y: [0, 100, 0] }}
+          className="absolute bottom-[10%] right-[10%] w-[50%] h-[50%] bg-[#233A77] rounded-full filter blur-[180px] opacity-20"
+          animate={{ x: [0, -40, 0], y: [0, -30, 0] }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.div 
-          className="absolute bottom-[-20%] left-[20%] w-[60%] h-[50%] bg-[#3EB985] rounded-full filter blur-[130px] opacity-10"
-          animate={{ x: [0, 80, 0], y: [0, -100, 0] }}
-          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-        />
       </div>
-
-      <BrandBackground 
-        variant="dark"
-        className="top-0 right-0 w-[500px] h-[500px] lg:w-[700px] lg:h-[700px] [mask-image:radial-gradient(circle_at_top_right,#000_0%,transparent_50%)] pointer-events-none z-10"
-        style={{ position: 'absolute', backgroundColor: 'transparent' }}
-      />
-      <BrandBackground 
-        variant="dark"
-        className="bottom-0 left-0 w-[500px] h-[500px] lg:w-[700px] lg:h-[700px] [mask-image:radial-gradient(circle_at_bottom_left,#000_0%,transparent_50%)] pointer-events-none z-10"
-        style={{ position: 'absolute', backgroundColor: 'transparent' }}
-      />
 
       <div className="max-w-7xl 2xl:max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-16 w-full z-10 py-20 lg:py-0 relative">
         
@@ -89,36 +71,13 @@ export const HeroSection = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <motion.h1 
-              className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 pb-4 leading-[1.4] tracking-tight whitespace-pre-line text-transparent bg-clip-text overflow-visible"
-              style={{
-                backgroundImage: 'linear-gradient(to right, #1C81AC, #3EB985, #233A77, #1C81AC)',
-                backgroundSize: '300% 100%',
-              }}
-              animate={{ backgroundPosition: ['0% 50%', '100% 50%'] }}
-              transition={{ duration: 10, ease: "linear", repeat: Infinity }}>
+              className="text-5xl sm:text-6xl lg:text-[72px] font-bold mb-6 pb-4 leading-[1.3] whitespace-pre-line text-white drop-shadow-xl"
+              style={{ fontFamily: 'Thamaynyah, sans-serif' }}
+            >
               اكتشف الجمعيات
               <br />
               الشبابية في المملكة
             </motion.h1>
-            
-            <motion.div 
-              className="flex items-center justify-center lg:justify-start gap-4 mt-4 mb-10"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <div className="w-12 h-12 relative shrink-0">
-                <Image 
-                  src="/Emblem_of_Saudi_Arabia_(2).svg.png" 
-                  alt="Saudi Emblem" 
-                  fill 
-                  className="object-contain filter brightness-0 invert opacity-70 drop-shadow-md" 
-                />
-              </div>
-              <p className="text-lg sm:text-xl lg:text-2xl font-medium text-white/80 tracking-wide leading-relaxed">
-                رؤية شبابية، بيانات دقيقة، تمكين مستدام
-              </p>
-            </motion.div>
 
           </motion.div>
         </div>

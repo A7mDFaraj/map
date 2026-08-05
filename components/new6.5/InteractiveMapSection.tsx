@@ -61,7 +61,7 @@ export const InteractiveMapSection: React.FC = () => {
               className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
                 activeCategory === cat
                   ? 'bg-[#233A77] text-white shadow-md shadow-[#263370]/20'
-                  : 'bg-[#0a0d1d] text-white/60 hover:bg-[#1C81AC]/10'
+                  : 'bg-[#1A2A5E] text-white/60 hover:bg-[#1C81AC]/10'
               }`}
             >
               {cat}
@@ -71,7 +71,7 @@ export const InteractiveMapSection: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
-          <div className="lg:col-span-7 bg-[#0a0d1d] rounded-3xl p-6 border border-[#1C81AC]/20 card-shadow relative overflow-hidden flex flex-col items-center h-full">
+          <div className="lg:col-span-7 bg-[#1A2A5E] rounded-3xl p-6 border border-[#1C81AC]/20 card-shadow relative overflow-hidden flex flex-col items-center h-full">
             
             <div className="w-full flex items-center justify-between mb-4">
               <span className="text-xs font-bold text-white flex items-center gap-1.5">
@@ -81,7 +81,7 @@ export const InteractiveMapSection: React.FC = () => {
               {selectedRegion && (
                 <button
                   onClick={() => setSelectedRegion(null)}
-                  className="text-xs font-bold text-[#1C81AC] hover:text-[#1C81AC] flex items-center gap-1 bg-[#12172e] px-3 py-1.5 rounded-lg border border-[#1C81AC]/20 shadow-sm transition-all"
+                  className="text-xs font-bold text-[#1C81AC] hover:text-[#1C81AC] flex items-center gap-1 bg-[#233A77] px-3 py-1.5 rounded-lg border border-[#1C81AC]/20 shadow-sm transition-all"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
                   إعادة ضبط الخريطة
@@ -94,7 +94,7 @@ export const InteractiveMapSection: React.FC = () => {
                 <defs>
                   <linearGradient id="regionGradientDefault" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#233A77" stopOpacity="0.85" />
-                    <stop offset="100%" stopColor="#12172e" stopOpacity="0.95" />
+                    <stop offset="100%" stopColor="#233A77" stopOpacity="0.95" />
                   </linearGradient>
                   <linearGradient id="regionGradientHover" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#1C81AC" stopOpacity="0.9" />
@@ -125,7 +125,7 @@ export const InteractiveMapSection: React.FC = () => {
                             ? 'url(#regionGradientHover)'
                             : 'url(#regionGradientDefault)'
                         }
-                        stroke="#12172e"
+                        stroke="#1C81AC"
                         strokeWidth={isSelected ? '2.5' : '1.5'}
                         strokeLinejoin="round"
                         initial={{ 
@@ -173,15 +173,15 @@ export const InteractiveMapSection: React.FC = () => {
                           r={isSelected ? '9' : isHovered ? '7' : '5'}
                           className={`transition-all duration-300 ${
                             isSelected
-                              ? 'fill-emerald-400 stroke-[#12172e] stroke-2 animate-ping'
+                              ? 'fill-emerald-400 stroke-[#233A77] stroke-2 animate-ping'
                               : isHovered
-                              ? 'fill-cyan-300 stroke-[#12172e] stroke-2'
-                              : 'fill-cyan-400 stroke-[#12172e]'
+                              ? 'fill-cyan-300 stroke-[#233A77] stroke-2'
+                              : 'fill-cyan-400 stroke-[#233A77]'
                           }`}
                         />
                         <circle
                           r={isSelected ? '5' : isHovered ? '4' : '3'}
-                          className={isSelected ? 'fill-white' : 'fill-[#0a0d1d]'}
+                          className={isSelected ? 'fill-white' : 'fill-[#1A2A5E]'}
                         />
                       </motion.g>
                     </g>
@@ -202,7 +202,7 @@ export const InteractiveMapSection: React.FC = () => {
                       {hoveredRegion.name}
                     </div>
                     <div className="text-xs text-slate-300 mt-0.5">
-                      {hoveredRegion.associationsCount} جمعية • {hoveredRegion.beneficiariesCount.toLocaleString('ar-SA')} مستفيد
+                      {hoveredRegion.associationsCount} جمعية • {hoveredRegion.beneficiariesCount.toLocaleString('en-US')} مستفيد
                     </div>
                   </motion.div>
                 )}
@@ -219,7 +219,7 @@ export const InteractiveMapSection: React.FC = () => {
                   className={`px-3 py-1.5 rounded-lg text-xs font-bold shrink-0 transition-all ${
                     selectedRegion?.id === r.id
                       ? 'bg-[#3EB985] text-white'
-                      : 'bg-[#12172e] text-white border border-[#1C81AC]/20 hover:bg-[#1C81AC]/10'
+                      : 'bg-[#233A77] text-white border border-[#1C81AC]/20 hover:bg-[#1C81AC]/10'
                   }`}
                 >
                   {r.name.replace('منطقة ', '')}
@@ -229,7 +229,7 @@ export const InteractiveMapSection: React.FC = () => {
 
           </div>
 
-          <div className="lg:col-span-5 bg-[#12172e] rounded-3xl p-6 border border-[#1C81AC]/20 card-shadow h-full flex flex-col">
+          <div className="lg:col-span-5 bg-[#233A77] rounded-3xl p-6 border border-[#1C81AC]/20 card-shadow h-full flex flex-col">
             
             <div className="flex items-center justify-between pb-4 border-b border-[#1C81AC]/20 mb-6">
               <div>
@@ -243,28 +243,28 @@ export const InteractiveMapSection: React.FC = () => {
                   )}
                 </h3>
               </div>
-              <div className="w-10 h-10 rounded-xl bg-[#0a0d1d] border border-[#1C81AC]/20 flex items-center justify-center text-white">
+              <div className="w-10 h-10 rounded-xl bg-[#1A2A5E] border border-[#1C81AC]/20 flex items-center justify-center text-white">
                 <Building2 className="w-5 h-5" />
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4 mb-6">
               
-              <div className="bg-[#0a0d1d] p-4 rounded-2xl border border-[#1C81AC]/20">
+              <div className="bg-[#1A2A5E] p-4 rounded-2xl border border-[#1C81AC]/20">
                 <span className="text-xs text-white/60 font-bold block mb-1">عدد الجمعيات</span>
                 <span className="text-2xl font-black text-white">
                   {activeRegionData.associationsCount}
                 </span>
               </div>
 
-              <div className="bg-[#0a0d1d] p-4 rounded-2xl border border-[#1C81AC]/20">
+              <div className="bg-[#1A2A5E] p-4 rounded-2xl border border-[#1C81AC]/20">
                 <span className="text-xs text-white/60 font-bold block mb-1">المستفيدون سنوياً</span>
-                <span className="text-2xl font-black text-[#1C81AC]">
-                  {activeRegionData.beneficiariesCount.toLocaleString('ar-SA')}
+                <span className="text-2xl font-black text-[#1C81AC]" dir="ltr">
+                  {activeRegionData.beneficiariesCount.toLocaleString('en-US')}
                 </span>
               </div>
 
-              <div className="bg-[#0a0d1d] p-4 rounded-2xl border border-[#1C81AC]/20">
+              <div className="bg-[#1A2A5E] p-4 rounded-2xl border border-[#1C81AC]/20">
                 <span className="text-xs text-white/60 font-bold block mb-1">عدد المبادرات</span>
                 <span className="text-2xl font-black text-white">
                   {activeRegionData.initiativesCount}
@@ -276,7 +276,7 @@ export const InteractiveMapSection: React.FC = () => {
                   <TrendingUp className="w-3.5 h-3.5" />
                   نسبة النمو
                 </span>
-                <span className="text-2xl font-black text-[#3EB985]">
+                <span className="text-2xl font-black text-[#3EB985]" dir="ltr">
                   +{activeRegionData.growthRate}%
                 </span>
               </div>
@@ -296,7 +296,7 @@ export const InteractiveMapSection: React.FC = () => {
                   currentAssociations.slice(0, 4).map((assoc) => (
                     <div
                       key={assoc.id}
-                      className="p-3.5 rounded-xl bg-[#0a0d1d] hover:bg-[#1C81AC]/10 border border-[#1C81AC]/20 transition-colors flex items-center justify-between"
+                      className="p-3.5 rounded-xl bg-[#1A2A5E] hover:bg-[#1C81AC]/10 border border-[#1C81AC]/20 transition-colors flex items-center justify-between"
                     >
                       <div className="flex items-center gap-3">
                         <div className={`w-10 h-10 rounded-xl bg-gradient-to-tr ${assoc.initialBg} text-white font-black text-lg flex items-center justify-center shadow-sm shrink-0`}>
@@ -317,7 +317,7 @@ export const InteractiveMapSection: React.FC = () => {
                     </div>
                   ))
                 ) : (
-                  <div className="p-6 text-center text-white/60 text-sm bg-[#0a0d1d] rounded-xl border border-dashed border-[#1C81AC]/20">
+                  <div className="p-6 text-center text-white/60 text-sm bg-[#1A2A5E] rounded-xl border border-dashed border-[#1C81AC]/20">
                     لا توجد جمعيات تطابق الفلتر المحدد في هذه المنطقة.
                   </div>
                 )}

@@ -19,7 +19,7 @@ export const PartnersSection = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-l from-white to-[#1C81AC] tracking-wide drop-shadow-sm pb-2 leading-relaxed"
+            className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-l from-white to-[#1C81AC] pb-2 leading-relaxed"
           >
             شركاؤنا الاستراتيجيون
           </motion.h2>

@@ -58,7 +58,7 @@ export const FeaturedAssociationsSection = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-l from-white to-[#1C81AC] pb-2 whitespace-nowrap"
+            className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-l from-white to-[#1C81AC] pb-2 whitespace-nowrap"
           >
             جمعيات شبابية مميزة
           </motion.h2>
@@ -101,7 +101,7 @@ export const FeaturedAssociationsSection = () => {
                     isActive ? 'opacity-100 scale-100 z-10' : 'opacity-30 scale-90 blur-[2px] pointer-events-none z-0'
                   }`}
                 >
-                  <div className="relative bg-[#12172e]/60 backdrop-blur-lg border border-white/5 hover:border-[#1C81AC]/40 rounded-3xl p-6 flex flex-col justify-between flex-grow min-h-[240px] transition-all duration-300 shadow-xl hover:shadow-[0_15px_30px_rgba(28,129,172,0.15)] group/card">
+                  <div className="relative bg-[#233A77]/60 backdrop-blur-lg border border-white/5 hover:border-[#1C81AC]/40 rounded-3xl p-6 flex flex-col justify-between flex-grow min-h-[240px] transition-all duration-300 shadow-xl hover:shadow-[0_15px_30px_rgba(28,129,172,0.15)] group/card">
                     <div className="absolute inset-0 bg-gradient-to-br from-[#1C81AC]/0 via-transparent to-[#3EB985]/0 group-hover/card:from-[#1C81AC]/10 group-hover/card:to-[#3EB985]/5 transition-colors duration-500 rounded-3xl pointer-events-none" />
                     
                     <div className="relative z-10 flex-grow pointer-events-none">
@@ -133,7 +133,7 @@ export const FeaturedAssociationsSection = () => {
                     </div>
 
                     <div className="relative z-10 mt-5 pt-4 border-t border-white/5 group-hover/card:border-[#1C81AC]/20 transition-colors pointer-events-auto">
-                      <button className="w-full flex items-center justify-center gap-2 bg-[#0a0d1d]/80 hover:bg-[#1C81AC] border border-white/5 hover:border-transparent text-white/80 hover:text-white font-bold text-sm py-3 rounded-xl transition-all duration-300 group/btn">
+                      <button className="w-full flex items-center justify-center gap-2 bg-[#1A2A5E]/80 hover:bg-[#1C81AC] border border-white/5 hover:border-transparent text-white/80 hover:text-white font-bold text-sm py-3 rounded-xl transition-all duration-300 group/btn">
                         عرض التفاصيل
                         <ChevronLeft className="w-4 h-4 transition-transform" />
                       </button>
@@ -150,7 +150,7 @@ export const FeaturedAssociationsSection = () => {
       <div className="flex items-center justify-center gap-6 relative z-20">
         <button 
           onClick={() => paginate(-1)}
-          className="w-12 h-12 rounded-full bg-[#12172e] border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-[#1C81AC] hover:border-[#1C81AC] transition-all shadow-lg hover:shadow-[0_0_15px_rgba(28,129,172,0.5)] group shrink-0"
+          className="w-12 h-12 rounded-full bg-[#233A77] border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-[#1C81AC] hover:border-[#1C81AC] transition-all shadow-lg hover:shadow-[0_0_15px_rgba(28,129,172,0.5)] group shrink-0"
           aria-label="Previous page"
         >
           <ChevronRight className="w-6 h-6 group-hover:scale-110 transition-transform" />
@@ -179,7 +179,7 @@ export const FeaturedAssociationsSection = () => {
 
         <button 
           onClick={() => paginate(1)}
-          className="w-12 h-12 rounded-full bg-[#12172e] border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-[#1C81AC] hover:border-[#1C81AC] transition-all shadow-lg hover:shadow-[0_0_15px_rgba(28,129,172,0.5)] group shrink-0"
+          className="w-12 h-12 rounded-full bg-[#233A77] border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-[#1C81AC] hover:border-[#1C81AC] transition-all shadow-lg hover:shadow-[0_0_15px_rgba(28,129,172,0.5)] group shrink-0"
           aria-label="Next page"
         >
           <ChevronLeft className="w-6 h-6 group-hover:scale-110 transition-transform" />

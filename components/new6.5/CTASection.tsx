@@ -11,12 +11,12 @@ export const CTASection = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         
         {/* Minimalist Modern CTA Card */}
-        <div className="w-full bg-[#0d1326] border border-[#1C81AC]/30 rounded-[2.5rem] p-8 md:p-14 lg:p-16 relative overflow-hidden shadow-2xl group">
+        <div className="w-full bg-gradient-to-br from-[#1A2A5E] to-[#233A77] border border-[#3EB985]/30 hover:border-[#3EB985]/60 rounded-[2.5rem] p-8 md:p-14 lg:p-16 relative overflow-hidden shadow-2xl shadow-[#3EB985]/5 group transition-[border-color] duration-700">
           
           {/* Brand Background Pattern from BrandBackground component */}
           <BrandBackground 
             variant="dark"
-            patternOpacity={0.14}
+            patternOpacity={0.015}
             className="absolute inset-0 w-full h-full pointer-events-none z-0"
             style={{ 
               position: 'absolute', 
@@ -27,9 +27,17 @@ export const CTASection = () => {
           />
 
           {/* Ambient Lighting Accents */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-radial from-[#1C81AC]/10 via-[#3EB985]/5 to-transparent pointer-events-none z-0" />
-          <div className="absolute -top-24 -right-24 w-80 h-80 bg-[#1C81AC]/20 rounded-full blur-[90px] pointer-events-none z-0" />
-          <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-[#3EB985]/15 rounded-full blur-[90px] pointer-events-none z-0" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-radial from-[#3EB985]/15 via-[#1C81AC]/5 to-transparent pointer-events-none z-0" />
+          <motion.div
+            animate={{ scale: [1, 1.15, 1], x: [0, 12, 0], y: [0, -10, 0] }}
+            transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute -top-24 -right-24 w-80 h-80 bg-[#3EB985]/20 rounded-full blur-[90px] pointer-events-none z-0"
+          />
+          <motion.div
+            animate={{ scale: [1, 1.2, 1], x: [0, -10, 0], y: [0, 14, 0] }}
+            transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute -bottom-24 -left-24 w-80 h-80 bg-[#1C81AC]/20 rounded-full blur-[90px] pointer-events-none z-0"
+          />
 
           {/* Card Content (Centered, Minimalist, Perfect RTL Thamaynyah Typography) */}
           <div className="relative z-10 max-w-3xl mx-auto text-center flex flex-col items-center" style={{ fontFamily: 'Thamaynyah, sans-serif' }}>
@@ -39,7 +47,7 @@ export const CTASection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-6 leading-[1.3] tracking-normal"
+              className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-l from-white to-[#1C81AC] pb-2 mb-6 leading-[1.3]"
             >
               هل أنت ممثل لجمعية شبابية؟
             </motion.h2>
