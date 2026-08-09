@@ -85,13 +85,26 @@ export const HeroSection = () => {
             </motion.div>
 
             <motion.h1 
-              className="text-5xl sm:text-6xl lg:text-[72px] font-bold mb-12 leading-[1.3] whitespace-pre-line text-white drop-shadow-xl"
+              className="text-4xl sm:text-5xl lg:text-[56px] font-bold mb-6 leading-[1.3] whitespace-pre-line text-white drop-shadow-xl"
               style={{ fontFamily: 'Thamaynyah, sans-serif' }}
             >
               اكتشف الجمعيات
               <br />
               الشبابية في المملكة
             </motion.h1>
+
+            {/* Subtitle */}
+            <motion.p 
+              className="text-lg sm:text-xl lg:text-[22px] text-white/90 mb-10 leading-[1.6] max-w-lg mx-auto drop-shadow-md"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              style={{ fontFamily: 'Thamaynyah, sans-serif' }}
+            >
+              سجل جمعيتك مجاناً واحصل على ملف تعريفي
+              <br />
+              شامل وإمكانية التواصل المباشر مع المهتمين والداعمين
+            </motion.p>
 
             {/* Buttons */}
             <motion.div 
@@ -117,6 +130,28 @@ export const HeroSection = () => {
             </motion.div>
           </motion.div>
         </div>
+      </div>
+
+      {/* Partner Logo at Bottom Left */}
+      <div className="absolute bottom-8 left-8 z-30 hidden md:block group cursor-pointer">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1C81AC]/0 via-[#1C81AC]/20 to-[#3EB985]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full blur-xl pointer-events-none" />
+        <div className="text-white/60 text-sm mb-2 font-sans relative z-10 transition-colors duration-300 group-hover:text-white/90" style={{ fontFamily: 'Thamaynyah, sans-serif' }}>
+          شريك استراتيجي
+        </div>
+        <img 
+          src="/partner/al-rajhi-humanitarian.svg" 
+          alt="Al Rajhi Humanitarian Foundation" 
+          className="h-14 w-auto object-contain filter brightness-0 invert opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 relative z-10"
+        />
+      </div>
+
+      {/* Mobile version of Partner Logo */}
+      <div className="absolute bottom-4 left-4 z-30 block md:hidden group cursor-pointer">
+        <img 
+          src="/partner/al-rajhi-humanitarian.svg" 
+          alt="Al Rajhi Humanitarian Foundation" 
+          className="h-10 w-auto object-contain filter brightness-0 invert opacity-80"
+        />
       </div>
     </section>
   );

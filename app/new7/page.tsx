@@ -17,7 +17,7 @@ export default function New7Page() {
         <AboutSection />
         <InteractiveMapSection />
         <StatsSection />
-        <PartnersSection />
+        {/* <PartnersSection /> */}
         <FeaturedAssociationsSection />
         <CTASection />
       </main>
