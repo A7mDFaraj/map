@@ -1,8 +1,44 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Building2, TrendingUp, CheckCircle2, RotateCcw } from 'lucide-react';
+import { motion, AnimatePresence, useMotionValue, useTransform, animate, useInView } from 'framer-motion';
+
+const Counter = ({ from, to }: { from: number, to: number }) => {
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: false });
+  const count = useMotionValue(from);
+  const rounded = useTransform(count, (latest) => Math.round(latest));
+
+  React.useEffect(() => {
+    if (isInView) {
+      const controls = animate(count, to, { duration: 1.5, ease: "easeOut" });
+      return controls.stop;
+    } else {
+      count.set(from);
+    }
+  }, [count, to, isInView, from]);
+
+  return <motion.span ref={ref}>{rounded}</motion.span>;
+};
+
+const CounterFormatted = ({ from, to }: { from: number, to: number }) => {
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: false });
+  const count = useMotionValue(from);
+  const formatted = useTransform(count, (latest) => Math.round(latest).toLocaleString('en-US'));
+  
+  React.useEffect(() => {
+    if (isInView) {
+      const controls = animate(count, to, { duration: 1.5, ease: "easeOut" });
+      return controls.stop;
+    } else {
+      count.set(from);
+    }
+  }, [count, to, isInView, from]);
+
+  return <motion.span ref={ref}>{formatted}</motion.span>;
+};
+import { MapPin, Building2, TrendingUp, CheckCircle2, RotateCcw, MousePointer2 } from 'lucide-react';
 import { SAUDI_REGIONS, RegionData, TOTAL_NATIONAL_METRICS } from '@/data/mapRegionsData';
 import { YOUTH_ASSOCIATIONS, CATEGORIES } from '@/data/associationsData';
 
@@ -10,6 +46,29 @@ export const InteractiveMapSection: React.FC = () => {
   const [selectedRegion, setSelectedRegion] = useState<RegionData | null>(null);
   const [hoveredRegion, setHoveredRegion] = useState<RegionData | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>('الكل');
+  
+  // Ref for the map to sync cursor animation
+  const mapRef = React.useRef(null);
+  const isMapInView = useInView(mapRef, { once: false, margin: "-20%" });
+  const [showCursor, setShowCursor] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
+
+  React.useEffect(() => {
+    if (selectedRegion) {
+      setHasInteracted(true);
+    }
+  }, [selectedRegion]);
+
+  React.useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    if (isMapInView && !hasInteracted) {
+      // Show cursor 2.5s after map comes into view
+      timeout = setTimeout(() => setShowCursor(true), 2500);
+    } else {
+      setShowCursor(false);
+    }
+    return () => clearTimeout(timeout);
+  }, [isMapInView, hasInteracted]);
 
   const currentAssociations = YOUTH_ASSOCIATIONS.filter((assoc) => {
     const matchesRegion = selectedRegion ? assoc.regionId === selectedRegion.id : true;
@@ -43,13 +102,13 @@ export const InteractiveMapSection: React.FC = () => {
       <div className="absolute top-0 right-0 w-[40vw] h-[40vw] bg-[#1C81AC]/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[40vw] h-[40vw] bg-[#3EB985]/10 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-[1440px] w-full h-[720px] mx-auto px-4 lg:px-8 relative z-10 flex flex-col">
+      <div className="max-w-[1440px] w-full h-auto lg:h-[720px] mx-auto px-4 lg:px-8 relative z-10 flex flex-col">
 
         {/* Dashboard Grid - Floating in centered container */}
         <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-5 min-h-0">
           
           {/* Map Column (Left) */}
-          <div className="lg:col-span-7 xl:col-span-8 bg-[#1A2A5E]/40 backdrop-blur-2xl border border-[#1C81AC]/20 rounded-3xl p-5 flex flex-col h-full relative group shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
+          <div className="lg:col-span-7 xl:col-span-8 bg-[#1A2A5E]/40 backdrop-blur-2xl border border-[#1C81AC]/20 rounded-3xl p-4 lg:p-5 flex flex-col h-full min-h-[400px] lg:min-h-0 relative group shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
             
             <div className="flex justify-between items-center mb-2 shrink-0">
               <span className="text-sm font-bold text-white flex items-center gap-2">
@@ -67,7 +126,7 @@ export const InteractiveMapSection: React.FC = () => {
               )}
             </div>
 
-            <div className="flex-1 w-full min-h-0 relative flex items-center justify-center p-3">
+            <div ref={mapRef} className="flex-1 w-full min-h-0 relative flex items-center justify-center p-3">
               <svg viewBox="-10 -15 750 670" overflow="visible" className="w-full h-full object-contain drop-shadow-[0_15px_25px_rgba(0,0,0,0.5)]">
                 <defs>
                   <linearGradient id="mapGradientDefault" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -88,9 +147,22 @@ export const InteractiveMapSection: React.FC = () => {
                   const isSelected = selectedRegion?.id === region.id;
                   const isHovered = hoveredRegion?.id === region.id;
                   
+                  const randomX = Math.sin(index * 13) * 120;
+                  const randomY = Math.cos(index * 17) * 120;
+                  const randomRotate = Math.sin(index * 19) * 20;
+
                   return (
                     <g key={region.id} className="cursor-pointer">
-                      <motion.path
+                      <motion.g
+                        animate={{ y: [0, -5, 0] }}
+                        transition={{
+                          duration: 4,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: index * 0.15
+                        }}
+                      >
+                        <motion.path
                         d={region.svgPath}
                         fill={
                           isSelected ? 'url(#mapGradientActive)'
@@ -98,18 +170,37 @@ export const InteractiveMapSection: React.FC = () => {
                           : 'url(#mapGradientDefault)'
                         }
                         stroke={isSelected ? '#fff' : '#1C81AC'}
-                        strokeWidth={isSelected ? '2' : '1'}
+                        strokeWidth={isSelected ? '2.5' : '1.5'}
                         strokeLinejoin="round"
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: index * 0.05, duration: 0.5 }}
-                        whileHover={{ scale: 1.02, zIndex: 50 }}
+                        initial={{ 
+                          opacity: 0, 
+                          scale: 0.85, 
+                          x: randomX, 
+                          y: randomY, 
+                          rotate: randomRotate 
+                        }}
+                        whileInView={{ 
+                          opacity: 1, 
+                          scale: 1, 
+                          x: 0, 
+                          y: 0, 
+                          rotate: 0 
+                        }}
+                        transition={{ 
+                          type: "spring", 
+                          stiffness: 50, 
+                          damping: 15, 
+                          mass: 1.2,
+                          delay: index * 0.06
+                        }}
+                        whileHover={{ scale: 1.04, y: -6, zIndex: 50 }}
                         onMouseEnter={() => setHoveredRegion(region)}
                         onMouseLeave={() => setHoveredRegion(null)}
                         onClick={() => setSelectedRegion(selectedRegion?.id === region.id ? null : region)}
                         className="origin-center transition-all duration-300 hover:drop-shadow-[0_0_15px_rgba(28,129,172,0.6)]"
+                        suppressHydrationWarning
                       />
-
+                      </motion.g>
                     </g>
                   );
                 })}
@@ -132,6 +223,61 @@ export const InteractiveMapSection: React.FC = () => {
                       <span className="text-white/70"><strong className="text-white">{hoveredRegion.associationsCount}</strong> جمعية</span>
                       <span className="text-white/70"><strong className="text-cyan-400">{hoveredRegion.beneficiariesCount.toLocaleString('en-US')}</strong> مستفيد</span>
                     </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Interaction Hint (Hand Clicking) */}
+              <AnimatePresence>
+                {showCursor && !hoveredRegion && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.5 }}
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20 flex items-center justify-center"
+                  >
+                    <motion.div
+                      animate={{
+                        x: [60, 0, 0, 0, 60],
+                        y: [80, 0, 0, 0, 80],
+                        scale: [1, 1, 0.85, 1, 1],
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        times: [0, 0.3, 0.4, 0.5, 1]
+                      }}
+                      className="relative"
+                    >
+                      {/* Ripple effect */}
+                      <motion.div
+                        animate={{
+                          scale: [0.5, 0.5, 0.5, 3, 3],
+                          opacity: [0, 0, 0.8, 0, 0],
+                        }}
+                        transition={{
+                          duration: 3,
+                          repeat: Infinity,
+                          ease: "easeOut",
+                          times: [0, 0.3, 0.4, 0.7, 1]
+                        }}
+                        className="absolute -top-3 -left-3 w-10 h-10 bg-cyan-400 rounded-full z-0"
+                      />
+                      
+                      <div className="bg-white/95 backdrop-blur-sm p-3 rounded-full shadow-[0_10px_40px_rgba(28,129,172,0.5)] relative z-10 border border-[#1C81AC]/30 text-[#1A2A5E]">
+                        <MousePointer2 className="w-8 h-8" fill="currentColor" />
+                      </div>
+                    </motion.div>
+                    
+                    <motion.div 
+                      animate={{ opacity: [0, 1, 1, 1, 0] }}
+                      transition={{ duration: 3, repeat: Infinity, times: [0, 0.3, 0.4, 0.5, 1] }}
+                      className="absolute top-[80px] whitespace-nowrap bg-[#1C81AC]/90 backdrop-blur-md text-white px-4 py-2 rounded-xl text-xs font-bold shadow-xl border border-white/20"
+                    >
+                      انقر للتفاعل
+                    </motion.div>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -158,28 +304,56 @@ export const InteractiveMapSection: React.FC = () => {
               </div>
 
               <div className="grid grid-cols-2 gap-3">
-                <div className="bg-black/20 rounded-2xl p-3.5 border border-white/5 relative overflow-hidden group hover:border-[#1C81AC]/50 transition-colors">
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.8, y: 30 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ type: "spring", stiffness: 100, damping: 12, delay: 0.1 }}
+                  className="bg-black/20 rounded-2xl p-3.5 border border-white/5 relative overflow-hidden group hover:border-[#1C81AC]/50 transition-colors"
+                >
                   <span className="text-[10px] text-white/50 font-bold block mb-1">الجمعيات المعتمدة</span>
-                  <span className="text-2xl font-black text-white">{activeRegionData.associationsCount}</span>
+                  <span className="text-2xl font-black text-white">
+                    <Counter from={0} to={activeRegionData.associationsCount} />
+                  </span>
                   <div className="absolute -right-4 -bottom-4 w-12 h-12 bg-white/5 rounded-full group-hover:scale-150 transition-transform duration-500" />
-                </div>
+                </motion.div>
                 
-                <div className="bg-black/20 rounded-2xl p-3.5 border border-white/5 relative overflow-hidden group hover:border-[#1C81AC]/50 transition-colors">
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.8, y: 30 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ type: "spring", stiffness: 100, damping: 12, delay: 0.2 }}
+                  className="bg-black/20 rounded-2xl p-3.5 border border-white/5 relative overflow-hidden group hover:border-[#1C81AC]/50 transition-colors"
+                >
                   <span className="text-[10px] text-white/50 font-bold block mb-1">المستفيدون (سنوياً)</span>
-                  <span className="text-2xl font-black text-cyan-400" dir="ltr">{activeRegionData.beneficiariesCount.toLocaleString('en-US')}</span>
-                </div>
+                  <span className="text-2xl font-black text-cyan-400" dir="ltr">
+                    <CounterFormatted from={0} to={activeRegionData.beneficiariesCount} />
+                  </span>
+                </motion.div>
 
-                <div className="bg-black/20 rounded-2xl p-3.5 border border-white/5">
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.8, y: 30 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ type: "spring", stiffness: 100, damping: 12, delay: 0.3 }}
+                  className="bg-black/20 rounded-2xl p-3.5 border border-white/5"
+                >
                   <span className="text-[10px] text-white/50 font-bold block mb-1">المبادرات النشطة</span>
-                  <span className="text-xl font-bold text-white">{activeRegionData.initiativesCount}</span>
-                </div>
+                  <span className="text-xl font-bold text-white">
+                    <Counter from={0} to={activeRegionData.initiativesCount} />
+                  </span>
+                </motion.div>
 
-                <div className="bg-[#3EB985]/10 rounded-2xl p-3.5 border border-[#3EB985]/20">
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.8, y: 30 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ type: "spring", stiffness: 100, damping: 12, delay: 0.4 }}
+                  className="bg-[#3EB985]/10 rounded-2xl p-3.5 border border-[#3EB985]/20"
+                >
                   <span className="text-[10px] text-[#3EB985] font-bold flex items-center gap-1 mb-1">
                     <TrendingUp className="w-3 h-3" /> نسبة النمو
                   </span>
-                  <span className="text-xl font-bold text-[#3EB985]" dir="ltr">+{activeRegionData.growthRate}%</span>
-                </div>
+                  <span className="text-xl font-bold text-[#3EB985]" dir="ltr">
+                    +<Counter from={0} to={activeRegionData.growthRate} />%
+                  </span>
+                </motion.div>
               </div>
             </div>
 
@@ -198,7 +372,7 @@ export const InteractiveMapSection: React.FC = () => {
                     <motion.div 
                       key={assoc.id}
                       initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
+                      whileInView={{ opacity: 1, x: 0 }}
                       className="p-3 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-between shrink-0 hover:bg-white/10 transition-colors"
                     >
                       <div className="flex items-center gap-3">
