@@ -12,15 +12,8 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onOpenRegister }) => {
   return (
-    <section id="hero" className="relative min-h-[95vh] pt-32 pb-20 flex items-center justify-center overflow-hidden hero-gradient">
+    <section id="hero" className="relative min-h-[95vh] pt-32 pb-20 flex items-center justify-center overflow-hidden">
       
-      {/* Accurate 3D Geometric Background instead of random blobs */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-bl from-[#0c7fae]/10 to-transparent skew-x-12 -z-10" />
-      <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-tr from-[#42b07a]/10 to-transparent -skew-x-12 -z-10" />
-
-      {/* Decorative Grid Pattern Overlay */}
-      <div className="absolute inset-0 brand-pattern-bg opacity-10 pointer-events-none mix-blend-overlay" />
-
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full h-full flex flex-col justify-center">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
@@ -87,130 +80,21 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister }) => {
             </motion.div>
           </div>
 
-          {/* Left Visual Column: The Animated Frame + Map + Logo */}
+          {/* Left Visual Column: The Video */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="lg:col-span-5 relative flex items-center justify-center w-full max-w-lg mx-auto"
+            className="lg:col-span-5 relative flex items-center justify-center w-full"
           >
-            {/* The Brand Frame wrapper */}
-            <div className="relative w-full aspect-square flex items-center justify-center">
-              
-              {/* Outer Glow behind the frame */}
-              <div className="absolute inset-0 bg-[#0c7fae]/30 rounded-full blur-[80px] animate-pulse-glow" />
-
-              {/* The frame.svg */}
-              <div className="absolute inset-0 z-10 opacity-90 drop-shadow-2xl mix-blend-screen scale-110">
-                <Image 
-                  src="/brand/logo/frame.svg" 
-                  alt="Decorative Frame" 
-                  fill 
-                  className="object-contain"
-                  priority
-                />
-              </div>
-
-              {/* The minimal logo floating inside */}
-              <motion.div 
-                animate={{ y: [0, -10, 0] }} 
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute z-30 right-4 top-4 w-20 h-20 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-3 shadow-2xl"
-              >
-                <Image src="/brand/logo/logo-minimal.svg" alt="SCY Logo" fill className="object-contain p-2" />
-              </motion.div>
-
-              {/* The Scattered Puzzle Vector Map of Saudi Arabia */}
-              <div className="relative z-20 w-[95%] h-[95%] flex items-center justify-center">
-                <svg viewBox="0 0 730 600" className="w-full h-full drop-shadow-[0_20px_30px_rgba(12,127,174,0.3)] overflow-visible">
-                  <g className="regions">
-                    {SAUDI_REGIONS.map((region, index) => {
-                      const randomX = Math.sin(index * 13) * 300;
-                      const randomY = Math.cos(index * 17) * 300;
-                      const randomRotate = Math.sin(index * 19) * 45;
-
-                      return (
-                        <motion.path
-                          key={`top-${region.id}`}
-                          id={`hero-${region.id}`}
-                          d={region.svgPath}
-                          fill="#1C81AC"
-                          stroke="#ffffff"
-                          strokeWidth="1.5"
-                          initial={{ 
-                            scale: 0.8, 
-                            x: randomX, 
-                            y: randomY, 
-                            rotate: randomRotate, 
-                            opacity: 0,
-                            fillOpacity: 0.15
-                          }}
-                          animate={{ 
-                            scale: 1, 
-                            x: 0, 
-                            y: 0, 
-                            rotate: 0, 
-                            opacity: 1,
-                            fillOpacity: [0.15, 0.4, 0.15]
-                          }}
-                          transition={{ 
-                            type: "spring", 
-                            stiffness: 40, 
-                            damping: 12, 
-                            mass: 1.5,
-                            delay: index * 0.08,
-                            fillOpacity: {
-                              repeat: Infinity,
-                              duration: 4,
-                              ease: "easeInOut",
-                              delay: 2 + (index * 0.1)
-                            }
-                          }}
-                          whileHover={{ 
-                            scale: 1.04, 
-                            y: -6, 
-                            fillOpacity: 0.8,
-                            zIndex: 50
-                          }}
-                          className="cursor-pointer origin-center drop-shadow-md hover:drop-shadow-[0_10px_15px_rgba(28,129,172,0.5)] transition-all duration-300"
-                          suppressHydrationWarning
-                        />
-                      );
-                    })}
-                  </g>
-                  
-                  {/* Glowing Pins */}
-                  {SAUDI_REGIONS.map((region, idx) => (
-                    <motion.g 
-                      key={`pin-${region.id}`}
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 2 + idx * 0.1, duration: 0.8 }}
-                    >
-                      <motion.circle
-                        cx={region.cx}
-                        cy={region.cy}
-                        r={6}
-                        fill="none"
-                        stroke="#ffffff"
-                        strokeWidth={2}
-                        initial={{ r: 6, opacity: 0.8 }}
-                        animate={{ r: 18, opacity: 0 }}
-                        transition={{ repeat: Infinity, duration: 2, ease: "easeOut", delay: idx * 0.15 }}
-                      />
-                      <circle
-                        cx={region.cx}
-                        cy={region.cy}
-                        r={4}
-                        fill="#ffffff"
-                        className="drop-shadow-[0_0_8px_#ffffff]"
-                      />
-                    </motion.g>
-                  ))}
-                </svg>
-              </div>
-
-            </div>
+            <video 
+              src="/خريطة 002 copy.mp4" 
+              autoPlay 
+              loop 
+              muted 
+              playsInline 
+              className="w-full h-auto object-cover rounded-2xl shadow-2xl"
+            />
           </motion.div>
 
         </div>
