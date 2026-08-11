@@ -1,10 +1,10 @@
 'use client';
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { Map, Sparkles } from 'lucide-react';
 
 // Premium Corporate Animation Variants
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, x: 50 },
   visible: { 
     opacity: 1, 
@@ -18,7 +18,7 @@ const cardVariants = {
   }
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: { 
     opacity: 1, 
