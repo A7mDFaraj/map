@@ -113,7 +113,7 @@ export const InteractiveMapSection: React.FC = () => {
             <div className="flex justify-between items-center mb-2 shrink-0">
               <span className="text-sm font-bold text-white flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-cyan-400" /> 
-                خريطة المناطق التفاعلية
+                خريطة المملكة
               </span>
               {selectedRegion && (
                 <button
@@ -293,7 +293,7 @@ export const InteractiveMapSection: React.FC = () => {
             <div className="bg-[#233A77]/40 backdrop-blur-2xl border border-[#1C81AC]/30 rounded-3xl p-5 shrink-0 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <span className="text-[10px] font-bold text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded-full">المؤشرات الحيوية</span>
+                  <span className="text-[10px] font-bold text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded-full">المؤشرات الرقمية</span>
                   <h3 className="text-xl font-black text-white flex items-center gap-2 mt-2">
                     {activeRegionData.name}
                   </h3>
@@ -310,7 +310,7 @@ export const InteractiveMapSection: React.FC = () => {
                   transition={{ type: "spring", stiffness: 100, damping: 12, delay: 0.1 }}
                   className="bg-black/20 rounded-2xl p-3.5 border border-white/5 relative overflow-hidden group hover:border-[#1C81AC]/50 transition-colors"
                 >
-                  <span className="text-[10px] text-white/50 font-bold block mb-1">الجمعيات المعتمدة</span>
+                  <span className="text-[10px] text-white/50 font-bold block mb-1">الجمعيات الشبابية</span>
                   <span className="text-2xl font-black text-white">
                     <Counter from={0} to={activeRegionData.associationsCount} />
                   </span>
@@ -323,7 +323,7 @@ export const InteractiveMapSection: React.FC = () => {
                   transition={{ type: "spring", stiffness: 100, damping: 12, delay: 0.2 }}
                   className="bg-black/20 rounded-2xl p-3.5 border border-white/5 relative overflow-hidden group hover:border-[#1C81AC]/50 transition-colors"
                 >
-                  <span className="text-[10px] text-white/50 font-bold block mb-1">المستفيدون (سنوياً)</span>
+                  <span className="text-[10px] text-white/50 font-bold block mb-1">الشباب والفتيات</span>
                   <span className="text-2xl font-black text-cyan-400" dir="ltr">
                     <CounterFormatted from={0} to={activeRegionData.beneficiariesCount} />
                   </span>
@@ -335,7 +335,7 @@ export const InteractiveMapSection: React.FC = () => {
                   transition={{ type: "spring", stiffness: 100, damping: 12, delay: 0.3 }}
                   className="bg-black/20 rounded-2xl p-3.5 border border-white/5"
                 >
-                  <span className="text-[10px] text-white/50 font-bold block mb-1">المبادرات النشطة</span>
+                  <span className="text-[10px] text-white/50 font-bold block mb-1">البرامج والمبادرات</span>
                   <span className="text-xl font-bold text-white">
                     <Counter from={0} to={activeRegionData.initiativesCount} />
                   </span>
@@ -348,7 +348,7 @@ export const InteractiveMapSection: React.FC = () => {
                   className="bg-[#3EB985]/10 rounded-2xl p-3.5 border border-[#3EB985]/20"
                 >
                   <span className="text-[10px] text-[#3EB985] font-bold flex items-center gap-1 mb-1">
-                    <TrendingUp className="w-3 h-3" /> نسبة النمو
+                    <TrendingUp className="w-3 h-3" /> معدل الشباب مقابل الجمعيات الشبابية
                   </span>
                   <span className="text-xl font-bold text-[#3EB985]" dir="ltr">
                     +<Counter from={0} to={activeRegionData.growthRate} />%
@@ -361,8 +361,7 @@ export const InteractiveMapSection: React.FC = () => {
             <div className="bg-[#1A2A5E]/30 backdrop-blur-2xl border border-white/10 rounded-3xl p-5 flex-1 min-h-0 flex flex-col shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
               <div className="flex justify-between items-center mb-4 shrink-0">
                 <span className="text-sm font-bold text-white flex items-center gap-2">
-                  قائمة الجمعيات
-                  <span className="bg-white/10 text-white/80 text-[10px] px-2 py-0.5 rounded-full">{currentAssociations.length}</span>
+                  قائمة الجمعيات الشبابية
                 </span>
               </div>
               
