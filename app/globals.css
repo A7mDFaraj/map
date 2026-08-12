@@ -54,7 +54,7 @@
   --color-scy-bg-alt: var(--scy-bg-alt);
   --color-scy-border: var(--scy-border);
 
-  --font-tajawal: var(--font-tajawal), 'Tajawal', sans-serif;
+  --font-sans: 'Thamaynyah', sans-serif;
 }
 
 /* Custom Utilities & Animations */
@@ -167,7 +167,7 @@
 body {
   background-color: var(--scy-bg);
   color: var(--scy-ink);
-  font-family: var(--font-tajawal), 'Tajawal', sans-serif;
+  font-family: 'Thamaynyah', sans-serif;
   direction: rtl;
   overflow-x: hidden;
 }
